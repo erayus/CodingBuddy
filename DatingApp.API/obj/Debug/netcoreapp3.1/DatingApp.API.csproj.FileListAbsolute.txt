@@ -16,3 +16,8 @@ C:\Users\imrtee\XProjects\DatingApp\DatingApp.API\obj\Debug\netcoreapp3.1\Dating
 C:\Users\imrtee\XProjects\DatingApp\DatingApp.API\obj\Debug\netcoreapp3.1\DatingApp.API.RazorTargetAssemblyInfo.cache
 C:\Users\imrtee\XProjects\DatingApp\DatingApp.API\obj\Debug\netcoreapp3.1\DatingApp.API.dll
 C:\Users\imrtee\XProjects\DatingApp\DatingApp.API\obj\Debug\netcoreapp3.1\DatingApp.API.pdb
+C:\Users\imrtee\XProjects\DatingApp\DatingApp.API\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\imrtee\XProjects\DatingApp\DatingApp.API\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
+C:\Users\imrtee\XProjects\DatingApp\DatingApp.API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+C:\Users\imrtee\XProjects\DatingApp\DatingApp.API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\imrtee\XProjects\DatingApp\DatingApp.API\obj\Debug\netcoreapp3.1\DatingApp.API.csproj.CopyComplete
