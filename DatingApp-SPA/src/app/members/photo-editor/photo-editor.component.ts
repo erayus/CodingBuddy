@@ -3,6 +3,9 @@ import { Photo } from 'src/app/_model/photo';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/_services/auth.service';
+import { HttpClient } from '@angular/common/http';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { UserService } from 'src/app/_services/user.service';
 
 
 @Component({
@@ -18,8 +21,12 @@ export class PhotoEditorComponent implements OnInit {
   hasAnotherDropZoneOver:boolean;
   response:string;
   baseUrl = environment.apiUrl;
+  currentMain: Photo;
 
-  constructor (private authServ: AuthService){
+  constructor (private authServ: AuthService,
+               private alertify: AlertifyService,
+               private userServ: UserService,
+               ){
     this.uploader = new FileUploader({
       url: this.baseUrl + 'users/' + this.authServ.decodedToken.nameid + '/photos',
       authToken: 'Bearer ' + localStorage.getItem('token'),
@@ -53,14 +60,23 @@ export class PhotoEditorComponent implements OnInit {
 
     this.uploader.response.subscribe( res => this.response = res );
   }
-  ngOnInit(){
 
+  ngOnInit(){
   }
+
   fileOverBase(e:any):void {
     this.hasBaseDropZoneOver = e;
   }
 
-  fileOverAnother(e:any):void {
-    this.hasAnotherDropZoneOver = e;
+  setMainPhoto(photo: Photo) {
+    this.userServ.setMainPhoto(this.authServ.decodedToken.nameid, photo.id).subscribe(() => {
+      this.currentMain = this.photos.filter(p => p.isMain === true)[0];
+      this.currentMain.isMain = false;
+      photo.isMain = true;
+    }), error => {
+      this.alertify.error(error);
+    };
   }
+
+
 }
