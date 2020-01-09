@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../_model/User';
 
@@ -10,7 +10,15 @@ import { User } from '../_model/User';
 })
 export class UserService {
   baseUrl = environment.apiUrl;
+  photoURL = new BehaviorSubject<string>('../../assets/user.png');
+  currentPhotoUrl = this.photoURL.asObservable();
+
   constructor(private http: HttpClient) { }
+
+
+  changeMemberPhoto(photoUrl: string){
+    this.photoURL.next(photoUrl);
+  }
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl + 'users' );

@@ -6,6 +6,8 @@ import { environment } from './../../environments/environment';
 import { User } from '../_model/User';
 import { Router } from '@angular/router';
 import { AlertifyService } from './alertify.service';
+import { BehaviorSubject } from 'rxjs';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +18,16 @@ export class AuthService {
   decodedToken: any;
   currentUser: User;
 
+
   constructor(private http: HttpClient,
               private router: Router,
-              private alertify: AlertifyService) { }
+              private alertify: AlertifyService,
+              private userServ: UserService,
+
+              ) { }
+
+
+
 
   login(model: any){
     return this.http.post(this.baseUrl + 'login', model)
