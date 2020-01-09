@@ -28,17 +28,23 @@ export class PhotoEditorComponent implements OnInit {
       removeAfterUpload: true,
       autoUpload: false,
       maxFileSize: 10 * 1024 * 1024,  //10 MB
-      formatDataFunction: async (item) => {
-        return new Promise( (resolve, reject) => {
-          resolve({
-            name: item._file.name,
-            length: item._file.size,
-            contentType: item._file.type,
-            date: new Date()
-          });
-        });
-      }
     });
+    // Tell the browser to that the file has no credentials
+    this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false};
+
+    this.uploader.onSuccessItem = (item, response, status, headers) => {
+      if(response) {
+        const res: Photo = JSON.parse(response);
+        const photo = {
+          id: res.id,
+          url: res.url,
+          dateAdded: res.dateAdded,
+          description: res.description,
+          isMain: res.isMain
+        };
+        this.photos.push(photo);
+      }
+    }
 
     this.hasBaseDropZoneOver = false;
 
@@ -46,6 +52,9 @@ export class PhotoEditorComponent implements OnInit {
     this.response = '';
 
     this.uploader.response.subscribe( res => this.response = res );
+  }
+  ngOnInit(){
+
   }
   fileOverBase(e:any):void {
     this.hasBaseDropZoneOver = e;
