@@ -39,8 +39,20 @@ namespace DatingApp.API.Controllers
             _cloudinary = new Cloudinary(acc);
         }
 
+        [HttpGet("{id}", Name = "GetPhoto")]
+        public async Task<IActionResult> GetPhoto(int id)
+        {
+            var photoFromRepo = await _repo.GetPhoto(id);
+
+            var photo = _mapper.Map<PhotoForReturnDto>(photoFromRepo);
+
+            return Ok(photo);
+    
+        }
+
+
         [HttpPost]
-        public async Task<IActionResult> AddPhotoForUser(int userid, PhotoForCreationDto photoForCreationDto)
+        public async Task<IActionResult> AddPhotoForUser(int userid, [FromForm]PhotoForCreationDto photoForCreationDto)
         {
             if (userid != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)) //Checking if the current token is being passed to the server has the id that matches the id of the id passed with the request 
                 return Unauthorized();
@@ -77,8 +89,9 @@ namespace DatingApp.API.Controllers
 
             if (await _repo.SaveAll())
             {
-                return Ok();
-            }
+                var photoToReturn = _mapper.Map<PhotoForReturnDto>(photo);
+                return CreatedAtRoute("GetPhoto", new {userId = userid, id = photo.Id}, photoToReturn); //Parmas: RouteName that is used to create the re
+            };
 
             return BadRequest("Could not add photo");
         }
