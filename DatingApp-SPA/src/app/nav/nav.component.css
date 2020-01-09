@@ -1,3 +1,9 @@
 .dropdown-toggle{
   cursor: pointer;
 }
+
+.profile-img{
+  max-width: 40px;
+  border: 1px solid white;
+  border-radius: 6px;
+}
