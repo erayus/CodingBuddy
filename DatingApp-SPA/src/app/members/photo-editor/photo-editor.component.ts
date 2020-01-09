@@ -52,10 +52,9 @@ export class PhotoEditorComponent implements OnInit {
         };
         this.photos.push(photo);
       }
-    }
+    };
 
     this.hasBaseDropZoneOver = false;
-
 
     this.response = '';
 
@@ -80,6 +79,15 @@ export class PhotoEditorComponent implements OnInit {
     }), error => {
       this.alertify.error(error);
     };
+  }
+
+  deletePhoto(photoId: number) {
+    this.alertify.confirm('Are you you want to delete this photo?', () => {
+      this.userServ.deletePhoto(this.authServ.decodedToken.nameid, photoId).subscribe((res) => {
+        this.photos.splice(this.photos.findIndex(p => p.id === photoId), 1);
+        this.alertify.success("Photo deleted successfully")
+      });
+    })
   }
 
 
