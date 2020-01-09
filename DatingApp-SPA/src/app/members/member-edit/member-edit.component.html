@@ -67,8 +67,7 @@
             </form>
           </tab>
           <tab heading="Edit Photos">
-            <h4>Photo edit will go here</h4>
-            <p>{{user.lookingFor}}</p>
+            <app-photo-editor [photos]="user.photos"></app-photo-editor>
           </tab>
         </tabset>
       </div>
