@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
     // }, error => {
     //   this.alertify.error(error);
     // });
-    console.log(this.registerForm.value)
+    console.log(this.registerForm.value);
   }
 
   cancel() {

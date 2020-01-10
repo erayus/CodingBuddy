@@ -54,7 +54,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       MessagesComponent
    ],
    imports: [
-  BrowserModule,
+    BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
