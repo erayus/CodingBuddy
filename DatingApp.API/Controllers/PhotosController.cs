@@ -141,12 +141,13 @@ namespace DatingApp.API.Controllers
                 return BadRequest("You cannot delete your main photo");
 
             if(photoFromRepo.PublicId != null) 
-            {     
+            {   
                 var deleteParams = new DeletionParams(photoFromRepo.PublicId);
                 var result = _cloudinary.Destroy(deleteParams);
                 if (result.Result == "ok"){
                     _repo.Delete(photoFromRepo);
                 }
+                _repo.Delete(photoFromRepo);
             }
             if(photoFromRepo.PublicId == null) 
             {
