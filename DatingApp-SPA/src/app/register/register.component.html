@@ -1,7 +1,6 @@
-<form [formGroup]="registerForm"(ngSubmit)="register()">
+<form [formGroup]="registerForm" (ngSubmit)="register()">
   <h2 class="text-center text-primary">Sign Up</h2>
   <hr>
-
   <div class="form-group">
     <input
     type="text"
@@ -35,11 +34,6 @@
     *ngIf="registerForm.get('password').hasError('maxlength')
     && registerForm.get('password').touched"
     >Password can't be longer than 8 characters</div>
-    <div
-    class="invalid-feedback"
-    *ngIf="registerForm.get('confirmPassword').hasError('required')
-    && registerForm.get('confirmPassword').touched"
-    >Password is required</div>
   </div>
 
   <div class="form-group">
@@ -77,4 +71,4 @@
 <div>
  <p> {{registerForm.value | json}}</p>
   <p>{{registerForm.status | json}}</p>
-  </div>
+</div>
