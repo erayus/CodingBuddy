@@ -9,7 +9,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import {NgxGalleryModule} from 'ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 
 import { AppComponent } from './app.component';
@@ -29,7 +29,6 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -55,7 +54,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
       MemberEditComponent,
       PhotoEditorComponent,
       ListsComponent,
-      MessagesComponent
+      MessagesComponent,
+      TimeAgoPipe
    ],
    imports: [
     BrowserAnimationsModule,
