@@ -18,17 +18,17 @@ export class MemberListComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(
-      data => this.users = data['users']
+      data => this.users = data['users'].result
     );
   }
 
-  loadUsers() {
-    this.userServ.getUsers().subscribe(
-      (users: User[]) => {
-        this.users = users;
-      }, error => {
-        this.alertifyServ.error(error);
-      });
-  }
+  // loadUsers() {
+  //   this.userServ.getUsers().subscribe(
+  //     (users: User[]) => {
+  //       this.users = users;
+  //     }, error => {
+  //       this.alertifyServ.error(error);
+  //     });
+  // }
 
 }
