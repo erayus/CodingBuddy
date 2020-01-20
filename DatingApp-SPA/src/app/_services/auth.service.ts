@@ -25,10 +25,6 @@ export class AuthService {
               private userServ: UserService,
 
               ) { }
-
-
-
-
   login(model: any){
     return this.http.post(this.baseUrl + 'login', model)
       .pipe(
@@ -38,6 +34,7 @@ export class AuthService {
             localStorage.setItem('user', JSON.stringify(response.user))
             this.decodedToken = this.jwtHelper.decodeToken(response.token);
             this.currentUser = response.user;
+            this.userServ.changeMemberPhoto(this.currentUser.photoUrl);
           }
         })
       );
