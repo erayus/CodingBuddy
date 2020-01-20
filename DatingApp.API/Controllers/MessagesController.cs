@@ -60,7 +60,8 @@ namespace DatingApp.API.Controllers
 
             if (await _repo.SaveAll())
                 return CreatedAtRoute("GetMessage", new {userId, id = message.Id, messageToReturn});
-
+            
+            return BadRequest("Failed to create message");
         }
 
     }
