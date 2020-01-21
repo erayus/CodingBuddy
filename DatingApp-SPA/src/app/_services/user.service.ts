@@ -5,6 +5,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { User } from '../_model/User';
 import { PaginatedResult } from '../_model/pagination';
 import { map } from 'rxjs/operators';
+import { Message } from '../_model/message';
 
 
 @Injectable({
@@ -79,4 +80,27 @@ export class UserService {
   sendLike(id: number, recipientId:number) {
     return this.http.post(this.baseUrl + 'users/' + id + '/like/' + recipientId, {});
   }
-}
+
+  getMessages(id: number, page?, itemsPerPage?, messageContainer?) {
+    const paginatedResult: PaginatedResult<Message[]> = new PaginatedResult<Message[]>();
+
+    let params = new HttpParams();
+
+    params.append('MessageContainer', messageContainer);
+
+    if (page!= null && itemsPerPage!= null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemsPerPage);
+    }
+
+    return this.http.get<Message[]>(this.baseUrl + 'uesrs/' + id + '/messages', {observe: 'response', params: params})
+      .pipe(
+        map(response => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') !== null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        })
+      )};
+  }

@@ -30,6 +30,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { ListResolver } from './_resolvers/list.resolver';
+import { MessagesResolver } from './_resolvers/messages.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -87,6 +88,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       MemberListResolver,
       MemberEditResolver,
       ListResolver,
+      MessagesResolver,
       {provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig}
    ],
    bootstrap: [
