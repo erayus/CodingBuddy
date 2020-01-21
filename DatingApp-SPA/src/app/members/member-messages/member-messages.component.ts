@@ -15,6 +15,7 @@ export class MemberMessagesComponent implements OnInit {
   constructor(private userServ: UserService, private authServ: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
+    this.loadMessages();
   }
 
   loadMessages(){
@@ -22,6 +23,7 @@ export class MemberMessagesComponent implements OnInit {
       .subscribe(
         messages => {
           this.messages = messages;
+          console.log(this.messages)
         },
         error => {
           this.alertify.error(error);

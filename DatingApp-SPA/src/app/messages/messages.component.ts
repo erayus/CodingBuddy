@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class MessagesComponent implements OnInit {
   messages: Message[];
   pagination: Pagination;
-  messageContainer = 'Outbox';
+  messageContainer = 'Unread';
   constructor(private userServ: UserService,
               private authService: AuthService,
               private alertify: AlertifyService,
