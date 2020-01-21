@@ -93,7 +93,7 @@ export class UserService {
       params = params.append('pageSize', itemsPerPage);
     }
 
-    return this.http.get<Message[]>(this.baseUrl + 'uesrs/' + id + '/messages', {observe: 'response', params: params})
+    return this.http.get<Message[]>(this.baseUrl + 'users/' + id + '/messages', {observe: 'response', params: params})
       .pipe(
         map(response => {
           paginatedResult.result = response.body;
@@ -103,4 +103,8 @@ export class UserService {
           return paginatedResult;
         })
       )};
+
+      getMessageThread(id: number, recipientId: number){
+        return this.http.get<Message[]>(this.baseUrl + 'users/' + id + '/messsages/thread/' + recipientId);
+      }
   }
