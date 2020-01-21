@@ -98,5 +98,36 @@ namespace DatingApp.API.Controllers
             throw new Exception("Failed to create message");
         }
 
+        [HttpPost("{id}")]
+        public async Task<IActionResult> DeleteMessage(int userId, int id)
+        {
+            if(userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value)) //Checking if the current token is being passed to the server has the id that matches the id of the id passed with the request 
+                return Unauthorized();
+
+            var messageFromRepo = await  _repo.GetMessage(id);
+
+            if (messageFromRepo.SenderId == userId) 
+            {
+                messageFromRepo.SenderDeleted = true;
+            }
+
+            if (messageFromRepo.RecipientId == userId) 
+            {
+                messageFromRepo.RecipientDeleted = true;
+            }
+
+            if (messageFromRepo.SenderDeleted && messageFromRepo.RecipientDeleted)
+            {
+                _repo.Delete(messageFromRepo);
+            }
+
+            if (await _repo.SaveAll())
+                return NoContent();
+
+            throw new Exception("Error deleting the message");
+
+        }
+
+
     }
 }
