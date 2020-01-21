@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class MessagesComponent implements OnInit {
   messages: Message[];
   pagination: Pagination;
-  messageContainer = 'Unread';
+  messageContainer = 'Outbox';
   constructor(private userServ: UserService,
               private authService: AuthService,
               private alertify: AlertifyService,
@@ -23,7 +23,8 @@ export class MessagesComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.messages = data['messages'].result;
-      this.pagination = data['pagination'].pagination;
+      console.log(this.messages);
+      this.pagination = data['messages'].pagination;
     });
   }
 
@@ -31,6 +32,8 @@ export class MessagesComponent implements OnInit {
     this.userServ.getMessages(this.authService.decodedToken.nameid, this.pagination.currentPage, this.pagination.itemsPerPage, this.messageContainer).subscribe(
       (res: PaginatedResult<Message[]> ) => {
         this.messages = res.result;
+        console.log(this.messages);
+
         this.pagination = res.pagination;
       }, error => {
         this.alertify.error(error);

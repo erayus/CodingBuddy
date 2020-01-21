@@ -85,8 +85,8 @@ export class UserService {
     const paginatedResult: PaginatedResult<Message[]> = new PaginatedResult<Message[]>();
 
     let params = new HttpParams();
-
-    params.append('MessageContainer', messageContainer);
+    console.log(messageContainer);
+    params = params.append('MessageContainer', messageContainer);
 
     if (page!= null && itemsPerPage!= null) {
       params = params.append('pageNumber', page);
@@ -105,6 +105,6 @@ export class UserService {
       )};
 
       getMessageThread(id: number, recipientId: number){
-        return this.http.get<Message[]>(this.baseUrl + 'users/' + id + '/messsages/thread/' + recipientId);
+        return this.http.get<Message[]>(this.baseUrl + 'users/' + id + '/messages/thread/' + recipientId);
       }
   }

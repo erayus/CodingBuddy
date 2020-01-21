@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -90,9 +91,9 @@ namespace DatingApp.API.Controllers
             var messageToReturn = _mapper.Map<MessageForCreationDto>(message);
 
             if (await _repo.SaveAll())
-                return CreatedAtRoute("GetMessage", new {userId, id = message.Id, messageToReturn});
+                return CreatedAtRoute("GetMessage", new {userId, id = message.Id}, messageToReturn);
             
-            return BadRequest("Failed to create message");
+            throw new Exception("Failed to create message");
         }
 
     }
