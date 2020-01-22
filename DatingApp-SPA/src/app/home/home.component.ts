@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../_services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +12,9 @@ export class HomeComponent implements OnInit {
   registerMode = false;
 
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   ngOnInit() {
-
   }
 
   registerToggle(){
