@@ -1,16 +1,17 @@
 <div class="row">
-  <div class="col-sm-2" *ngFor="let photo of photos">
+  <div class="col-sm-2 photo" *ngFor="let photo of photos">
     <img src="{{photo.url}}" class="img-thumbnail p-1" alt="">
     <div class="text-center d-flex">
-      <button type="button" class="btn btn-sm mr-1"
+      <button type="button" class="btn mx-auto"
         (click)="setMainPhoto(photo)"
         [ngClass]= "photo.isMain ? 'btn-success active': 'btn-secondary'"
         [disabled]="photo.isMain"
         >Main</button>
       <button type="button"
-        class="btn btn-sm btn-danger"
+        class="delete-btn btn "
         (click)="deletePhoto(photo.id)"
         [disabled]="photo.isMain"
+        [ngClass]= "photo.isMain ? 'invisible' : 'btn-danger'"
         >
         <i class="fa fa-trash-o"></i>
       </button>
