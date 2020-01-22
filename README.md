@@ -11,8 +11,8 @@ A platform for the developers to showcase their skills and find other like-minde
 
 ## Technology stack
 - Angular 8
-- .NET Core 3
-- Web API
+- APS .NET Core Web API
+- .NET Core 3 
 - NgxBootstrap: https://valor-software.com/ngx-bootstrap/#/documentation
 - Entity Framework
 - SQL Lite/MySQL Database
@@ -22,3 +22,6 @@ A platform for the developers to showcase their skills and find other like-minde
 - NPM
 - Entity Framework
 
+### Inspiration:
+Neil Cummings at 
+https://www.udemy.com/course/build-an-app-with-aspnet-core-and-angular-from-scratch/
